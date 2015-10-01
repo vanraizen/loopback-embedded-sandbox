@@ -1,0 +1,23 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "../common/models/embedded",
+      "./models"
+    ]
+  },
+  "MarketplaceUser": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Rating": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Provider": {
+    "dataSource": "db",
+    "public": true
+  }
+}

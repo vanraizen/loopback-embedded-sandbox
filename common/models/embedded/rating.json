@@ -1,0 +1,31 @@
+{
+  "name": "Rating",
+  "base": "Model",
+  "idInjection": false,
+  "properties": {
+    "rating": {
+      "type": "number",
+      "required": true
+    },
+    "comment": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": false
+    },
+    "username": {
+      "type": "string",
+      "required": false
+    },
+    "userId": {
+      "type": "string",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

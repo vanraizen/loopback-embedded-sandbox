@@ -1,0 +1,25 @@
+{
+  "name": "Provider",
+  "plural": "providers",
+  "base": "Model",
+  "idInjection": false,
+  "properties": {
+    "rating": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "allRatings": {
+      "type": "embedsMany",
+      "model": "Rating",
+      "property": "allUserRatings",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    }
+  },
+  "acls": [],
+  "methods": []
+}

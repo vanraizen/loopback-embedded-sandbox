@@ -1,0 +1,21 @@
+{
+  "name": "MarketplaceUser",
+  "plural": "users",
+  "base": "User",
+  "idInjection": true,
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "provider": {
+      "type": "embedsOne",
+      "model": "Provider",
+      "property": "providerAccount",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    }
+  },
+  "acls": [],
+  "methods": []
+}
