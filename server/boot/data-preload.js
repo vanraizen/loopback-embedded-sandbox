@@ -9,6 +9,19 @@ module.exports = function (app) {
         email: "zoro@email.com",
         providerAccount: { rating: 1 }
     };
+    function addRating(user, newRating, cb) {
+        user.providerAccount.allRatings.create(newRating, function (err, inst) {
+            //user.providerAccount.unsetAttribute('id'); //this fixes duplicate entry issue)
+            if (!err) {
+                user.providerAccount.rating += 1;
+                user.save(function (err, inst) {
+                    cb(err);
+                });
+            } else {
+                cb(err);
+            }
+        });
+    }
     MarketplaceUser.create(zorro,
         function (err, zorroAccount) {
 
@@ -39,11 +52,24 @@ module.exports = function (app) {
                     console.log("CREATE 2 id: ", zorroAccount.providerAccount.id); //there should be no ID on providerAccount but there is...
 
                     zorroAccount.providerAccount.rating = 5;
-                    zorroAccount.save(function() {
+                    zorroAccount.save(function(err) {
+
+                        console.log("1st user.save() err: ", err); //null
+
                         zorroAccount.providerAccount.rating = 6;
-                        zorroAccount.save(function () {
+                        zorroAccount.save(function (err) {
+
+                            console.log("2nd user.save() err: ", err); //null
+
                             console.log("prover account after 2 user.save() calls", zorroAccount.providerAccount);
                             //there should be no id fields on each rating yet there is...
+
+                            addRating(zorroAccount, { rating: 4, userId: zorroAccount.id, comment: "This rocks!!", username: "Jack" }, function(err) {
+                                console.log("1st add rating err: ", err); //null
+                                addRating(zorroAccount, { rating: 4, userId: zorroAccount.id, comment: "This rocks!!", username: "Jack" }, function(err) {
+                                    console.log("2nd add rating err: ", err); //[Error: Duplicate entry for Provider.id]
+                                });
+                            });
                         });
                     });
                 });
