@@ -65,7 +65,7 @@ module.exports = function (app) {
                             //there should be no id fields on each rating yet there is...
 
                             addRating(zorroAccount, { rating: 4, userId: zorroAccount.id, comment: "This rocks!!", username: "Jack" }, function(err) {
-                                console.log("1st add rating err: ", err); //null
+                                console.log("1st add rating err: ", err); //[Error: Duplicate entry for Provider.id]
                                 addRating(zorroAccount, { rating: 4, userId: zorroAccount.id, comment: "This rocks!!", username: "Jack" }, function(err) {
                                     console.log("2nd add rating err: ", err); //[Error: Duplicate entry for Provider.id]
                                 });
